@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="email"
+        android:padding="10dp"
+        android:background="@drawable/edit_background"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Придумайте пароль"
+        android:padding="10dp"
+        android:background="@drawable/edit_background"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/edit_pass_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Подтвердите пароль"
+        android:padding="10dp"
+        android:background="@drawable/edit_background"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/edit_group"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Учебная группа"
+        android:padding="10dp"
+        android:background="@drawable/edit_background"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/edit_card_num"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Номер профсоюзной карты"
+        android:padding="10dp"
+        android:background="@drawable/edit_background"
+        android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:text="Регистрация"/>
+
+</LinearLayout>
