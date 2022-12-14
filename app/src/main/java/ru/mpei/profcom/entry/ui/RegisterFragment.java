@@ -19,7 +19,12 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Entr
 
     @Override
     protected void prepareViewModel() {
+        viewModel.observeRegister(getViewLifecycleOwner(), new Observer<Response<ResponseBody>>() {
+            @Override
+            public void onChanged(Response<ResponseBody> responseBodyResponse) {
 
+            }
+        });
     }
 
     @Override
@@ -38,16 +43,10 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Entr
             return;
 
         viewModel.register(
-                binding.editEmail.getText().toString(),
-                binding.editGroup.getText().toString(),
-                binding.editCardNum.getText().toString(),
-                binding.editPassword.getText().toString());
-
-        viewModel.observeRegister(getViewLifecycleOwner(), new Observer<Response<ResponseBody>>() {
-            @Override
-            public void onChanged(Response<ResponseBody> responseBodyResponse) {
-
-            }
-        });
+            binding.editEmail.getText().toString(),
+            binding.editGroup.getText().toString(),
+            binding.editCardNum.getText().toString(),
+            binding.editPassword.getText().toString()
+        );
     }
 }

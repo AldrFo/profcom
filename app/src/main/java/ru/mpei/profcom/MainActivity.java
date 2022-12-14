@@ -8,10 +8,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import ru.mpei.profcom.core.NavigationController;
 import ru.mpei.profcom.entry.ui.EntryFragment;
+import ru.mpei.profcom.entry.ui.RegisterFragment;
+import ru.mpei.profcom.main.ui.MainFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationController {
 
+    public static final int REGISTER_FRAGMENT = -1;
     public static final int ENTRY_FRAGMENT = 0;
+    public static final int MAIN_FRAGMENT = 1;
+    public static final int NEWS_FRAGMENT = 2;
 
     public static SharedPreferences prefs;
 
@@ -30,6 +35,13 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
             case ENTRY_FRAGMENT:
                 ft.replace(R.id.main_container, new EntryFragment());
                 break;
+            case REGISTER_FRAGMENT:
+                ft.replace(R.id.main_container, new RegisterFragment());
+                break;
+            case MAIN_FRAGMENT:
+                ft.replace(R.id.main_container, new MainFragment());
+                break;
+            case NEWS_FRAGMENT:
             default:
                 throw new IllegalArgumentException("Fragment doesn't exist");
         }
