@@ -2,9 +2,13 @@ package ru.mpei.profcom;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.util.Stack;
 
 import ru.mpei.profcom.core.NavigationController;
 import ru.mpei.profcom.entry.ui.EntryFragment;
@@ -15,23 +19,29 @@ import ru.mpei.profcom.main.ui.NewsFragment;
 public class MainActivity extends AppCompatActivity implements NavigationController {
 
     public static final int REGISTER_FRAGMENT = -1;
-    public static final int ENTRY_FRAGMENT = 0;
-    public static final int MAIN_FRAGMENT = 1;
-    public static final int NEWS_FRAGMENT = 2;
+    public static final int ENTRY_FRAGMENT = 1;
+    public static final int MAIN_FRAGMENT = 2;
+    public static final int NEWS_FRAGMENT = 3;
 
     public static SharedPreferences prefs;
+
+    private final Stack<Integer> navigateStack = new Stack<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         prefs = getPreferences(MODE_PRIVATE);
-        navigate(ENTRY_FRAGMENT);
+        if(prefs.getInt("id", -1) == -1)
+            navigate(ENTRY_FRAGMENT);
+        else
+            navigate(MAIN_FRAGMENT);
     }
 
     @Override
     public void navigate(int fragmentId) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        navigateStack.push(fragmentId);
         switch (fragmentId){
             case ENTRY_FRAGMENT:
                 ft.replace(R.id.main_container, new EntryFragment());
@@ -49,5 +59,20 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
                 throw new IllegalArgumentException("Fragment doesn't exist");
         }
         ft.commitNow();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(navigateStack.isEmpty())
+            return;
+        navigateStack.pop();
+        if(navigateStack.isEmpty())
+            return;
+        Integer id = navigateStack.pop();
+        Log.d("asas", String.valueOf(id));
+        if(id != 0){
+            Log.d("asas", "das");
+            navigate(id);
+        }
     }
 }

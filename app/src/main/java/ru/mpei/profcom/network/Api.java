@@ -27,4 +27,12 @@ public interface Api {
         @Query("password") String password
     );
 
+    @FormUrlEncoded
+    @POST("set_user_type.php")
+    Single<Response<ResponseBody>> setUserType(
+        @Field("id") int id,
+        @Field("type") String type,
+        @Field("pb_id") int pbId
+    );
+
 }

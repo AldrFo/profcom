@@ -13,7 +13,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 import ru.mpei.profcom.MainActivity;
-import ru.mpei.profcom.core.Categories;
 import ru.mpei.profcom.network.Api;
 import ru.mpei.profcom.network.NetworkClient;
 
@@ -23,7 +22,7 @@ public class EntryViewModel extends ViewModel {
 
     private final MutableLiveData<Response<UserData>> entryData = new MutableLiveData<>();
     private final MutableLiveData<Response<ResponseBody>> registerData = new MutableLiveData<>();
-    private final MutableLiveData<Categories> categoryData = new MutableLiveData<>();
+    private final MutableLiveData<Response<ResponseBody>> categoryData = new MutableLiveData<>();
     private final MutableLiveData<Throwable> error = new MutableLiveData<>();
 
     public void observeEntry(LifecycleOwner l, Observer<Response<UserData>> o){
@@ -34,11 +33,7 @@ public class EntryViewModel extends ViewModel {
         registerData.observe(l, o);
     }
 
-    public void postCategoryValue(Categories value){
-        categoryData.postValue(value);
-    }
-
-    public void observeCategory(LifecycleOwner l, Observer<Categories> o){
+    public void observeCategory(LifecycleOwner l, Observer<Response<ResponseBody>> o){
         categoryData.observe(l, o);
     }
 
@@ -84,6 +79,27 @@ public class EntryViewModel extends ViewModel {
                 @Override
                 public void onSuccess(@NonNull Response<ResponseBody> response) {
                     registerData.postValue(response);
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
+                    error.postValue(e);
+                }
+            });
+    }
+
+    public void setUserType(int id, String type, int pbId){
+        api.setUserType(id, type, pbId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new SingleObserver<Response<ResponseBody>>() {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {}
+
+                @Override
+                public void onSuccess(@NonNull Response<ResponseBody> response) {
+                    if(response.isSuccessful())
+                        categoryData.postValue(response);
                 }
 
                 @Override

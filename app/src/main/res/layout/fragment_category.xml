@@ -18,11 +18,21 @@
                 "Студент/Активист/Сотрудник вуза(не относящийся к профкому)"/>
 
         <RadioButton
-            android:id="@+id/profcom_member_radio"
+            android:id="@+id/pb_member_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="Член состава профбюро"/>
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Например: ПБ ИВТИ"
+            android:layout_marginHorizontal="16dp"
+            android:inputType="textPersonName" />
+
         <RadioButton
             android:id="@+id/profcom_worker_radio"
             android:layout_width="wrap_content"

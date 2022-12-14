@@ -1,6 +1,5 @@
 package ru.mpei.profcom.entry.ui;
 
-import android.util.Log;
 
 import ru.mpei.profcom.MainActivity;
 import ru.mpei.profcom.core.BaseFragment;
