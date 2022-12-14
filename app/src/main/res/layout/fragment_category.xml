@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/categories_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/student_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text=
+                "Студент/Активист/Сотрудник вуза(не относящийся к профкому)"/>
+
+        <RadioButton
+            android:id="@+id/profcom_member_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Член состава профбюро"/>
+        <RadioButton
+            android:id="@+id/profcom_worker_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text=
+                "Студент/Активист/Сотрудник вуза(не относящийся к профкому)"/>
+
+        <RadioButton
+            android:id="@+id/profcom_boss_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Председатель/Заместитель председателя профкома"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/confirm_choice_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Подтвердить выбор"
+        android:layout_margin="20dp"/>
+
+
+</LinearLayout>
