@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
+import ru.mpei.profcom.MainActivity;
 import ru.mpei.profcom.core.Categories;
 import ru.mpei.profcom.network.Api;
 import ru.mpei.profcom.network.NetworkClient;
@@ -20,12 +21,12 @@ public class EntryViewModel extends ViewModel {
 
     private final Api api = NetworkClient.createApi(Api.class);
 
-    private final MutableLiveData<Response<ResponseBody>> entryData = new MutableLiveData<>();
+    private final MutableLiveData<Response<UserData>> entryData = new MutableLiveData<>();
     private final MutableLiveData<Response<ResponseBody>> registerData = new MutableLiveData<>();
     private final MutableLiveData<Categories> categoryData = new MutableLiveData<>();
     private final MutableLiveData<Throwable> error = new MutableLiveData<>();
 
-    public void observeEntry(LifecycleOwner l, Observer<Response<ResponseBody>> o){
+    public void observeEntry(LifecycleOwner l, Observer<Response<UserData>> o){
         entryData.observe(l, o);
     }
 
@@ -49,13 +50,20 @@ public class EntryViewModel extends ViewModel {
         api.entry(email, password)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new SingleObserver<Response<ResponseBody>>() {
+            .subscribe(new SingleObserver<Response<UserData>>() {
                 @Override
                 public void onSubscribe(@NonNull Disposable d) {}
 
                 @Override
-                public void onSuccess(@NonNull Response<ResponseBody> response) {
-                    entryData.postValue(response);
+                public void onSuccess(@NonNull Response<UserData> response) {
+                    if(response.isSuccessful() && response.body() != null) {
+                        entryData.postValue(response);
+                        MainActivity.prefs.edit()
+                            .putInt("id", response.body().id)
+                            .putString("email", response.body().email)
+                            .putString("password", response.body().password)
+                            .apply();
+                    }
                 }
 
                 @Override

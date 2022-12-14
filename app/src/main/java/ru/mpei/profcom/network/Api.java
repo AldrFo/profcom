@@ -8,6 +8,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import ru.mpei.profcom.entry.model.UserData;
 
 public interface Api {
 
@@ -21,7 +22,7 @@ public interface Api {
     );
 
     @GET("entry.php")
-    Single<Response<ResponseBody>> entry(
+    Single<Response<UserData>> entry(
         @Query("email") String email,
         @Query("password") String password
     );
