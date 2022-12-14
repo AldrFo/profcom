@@ -11,8 +11,8 @@ import ru.mpei.profcom.main.model.entities.InfoDto;
 
 public class InfoViewModel extends ViewModel {
 
-    private MutableLiveData<InfoDto> infoData = new MutableLiveData<>();
-    private MutableLiveData<List<InfoDto>> infoDataList = new MutableLiveData<>();
+    private final MutableLiveData<InfoDto> infoData = new MutableLiveData<>();
+    private final MutableLiveData<List<InfoDto>> infoDataList = new MutableLiveData<>();
 
     public void observeInfoData(LifecycleOwner l, Observer<InfoDto> o){
         infoData.observe(l, o);
