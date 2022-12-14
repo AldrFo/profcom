@@ -1,5 +1,6 @@
 package ru.mpei.profcom.main.ui;
 
+import ru.mpei.profcom.MainActivity;
 import ru.mpei.profcom.core.BaseFragment;
 import ru.mpei.profcom.databinding.FragmentMainBinding;
 import ru.mpei.profcom.main.model.MainViewModel;
@@ -16,7 +17,7 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainViewMode
     @Override
     protected void bindViews() {
         binding.newsButton.setOnClickListener(view -> {
-
+            navigate(MainActivity.NEWS_FRAGMENT);
         });
     }
 }

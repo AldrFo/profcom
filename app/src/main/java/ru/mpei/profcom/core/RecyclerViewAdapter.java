@@ -58,7 +58,7 @@ public abstract class RecyclerViewAdapter <DATA, B extends ViewBinding>
         holder.bind(list.get(position), position);
     }
 
-    static class ViewHolder<DATA, B extends ViewBinding> extends RecyclerView.ViewHolder{
+    protected static class ViewHolder<DATA, B extends ViewBinding> extends RecyclerView.ViewHolder{
 
         private final AdapterCallback<DATA, B> callbacks;
         private final B binding;

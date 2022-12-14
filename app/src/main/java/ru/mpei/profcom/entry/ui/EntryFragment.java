@@ -2,6 +2,7 @@ package ru.mpei.profcom.entry.ui;
 
 import android.util.Log;
 
+import ru.mpei.profcom.MainActivity;
 import ru.mpei.profcom.core.BaseFragment;
 import ru.mpei.profcom.databinding.FragmentEntryBinding;
 import ru.mpei.profcom.entry.model.EntryViewModel;
@@ -15,7 +16,8 @@ public class EntryFragment extends BaseFragment<FragmentEntryBinding, EntryViewM
     @Override
     protected void prepareViewModel() {
         viewModel.observeEntry(this, response -> {
-            Log.d("pu-pu", String.valueOf(response.code()));
+            if(response.isSuccessful())
+                navigate(MainActivity.MAIN_FRAGMENT);
         });
     }
 
@@ -27,10 +29,9 @@ public class EntryFragment extends BaseFragment<FragmentEntryBinding, EntryViewM
                 binding.passEditText.getText().toString()
             );
         });
+        binding.registerButton.setOnClickListener(view -> {
+            navigate(MainActivity.REGISTER_FRAGMENT);
+        });
     }
 
-    @Override
-    protected void refresh() {
-
-    }
 }

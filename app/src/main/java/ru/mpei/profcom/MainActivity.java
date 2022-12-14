@@ -10,6 +10,7 @@ import ru.mpei.profcom.core.NavigationController;
 import ru.mpei.profcom.entry.ui.EntryFragment;
 import ru.mpei.profcom.entry.ui.RegisterFragment;
 import ru.mpei.profcom.main.ui.MainFragment;
+import ru.mpei.profcom.main.ui.NewsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationController {
 
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
                 ft.replace(R.id.main_container, new MainFragment());
                 break;
             case NEWS_FRAGMENT:
+                ft.replace(R.id.main_container, new NewsFragment());
+                break;
             default:
                 throw new IllegalArgumentException("Fragment doesn't exist");
         }

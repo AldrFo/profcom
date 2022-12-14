@@ -32,6 +32,13 @@ public abstract class BaseFragment <B extends ViewBinding, VM extends ViewModel>
 
     protected void refresh(){}
 
+    protected void navigate(int fragmentId){
+        if(!(getActivity() instanceof NavigationController))
+            return;
+
+        ((NavigationController) getActivity()).navigate(fragmentId);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
