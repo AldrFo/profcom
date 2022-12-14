@@ -31,6 +31,10 @@ public class EntryViewModel extends ViewModel {
         registerData.observe(l, o);
     }
 
+    public void observeError(LifecycleOwner l, Observer<Throwable> o){
+        error.observe(l, o);
+    }
+
     public void entry(String email, String password){
         api.entry(email, password)
             .subscribeOn(Schedulers.io())
