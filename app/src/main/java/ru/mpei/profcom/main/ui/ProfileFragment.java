@@ -37,6 +37,7 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
             binding.userEmail.setText(userData.email);
             binding.userGroup.setText(userData.group);
             binding.userCardNumber.setText(userData.profCard);
+
         });
     }
 

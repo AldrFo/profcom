@@ -42,8 +42,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginVertical="8dp"
-            android:text=
-                "Студент/Активист/Сотрудник вуза(не относящийся к профкому)"/>
+            android:text="Сотрудник профкома"/>
 
         <RadioButton
             android:id="@+id/profcom_boss_radio"

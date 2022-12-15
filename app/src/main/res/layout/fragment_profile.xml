@@ -76,6 +76,7 @@
         android:text="Книжка активности"
         android:visibility="gone"/>
 
+
     <Button
         android:id="@+id/metod_btn"
         android:layout_width="match_parent"
@@ -96,7 +97,5 @@
         android:layout_height="wrap_content"
         android:text="Анкета"
         android:visibility="gone"/>
-
-
 
 </LinearLayout>
