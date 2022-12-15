@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 
 import com.squareup.picasso.Picasso;
 
-import ru.mpei.profcom.R;
 import ru.mpei.profcom.core.AdapterCallback;
 import ru.mpei.profcom.core.BaseFragment;
 import ru.mpei.profcom.core.RecyclerViewAdapter;

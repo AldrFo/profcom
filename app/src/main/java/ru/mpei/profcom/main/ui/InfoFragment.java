@@ -19,40 +19,49 @@ import ru.mpei.profcom.main.model.entities.NewsDto;
 
 public class InfoFragment extends BaseFragment<FragmentInfoBinding, InfoViewModel> {
 
+    private RecyclerViewAdapter<InfoDto, ItemInfoBinding> adapter = new RecyclerViewAdapter<InfoDto, ItemInfoBinding>() {
+
+        @NonNull
+        @Override
+        public ViewHolder<InfoDto, ItemInfoBinding> onCreateViewHolder(
+                @NonNull ViewGroup parent,
+                int viewType
+        ) {
+            return new ViewHolder<>(
+                    ItemInfoBinding.inflate(getLayoutInflater(), parent, false),
+                    new AdapterCallback<InfoDto, ItemInfoBinding>() {
+                        @Override
+                        public void bindViews(ItemInfoBinding binding, InfoDto item, int position) {
+                            binding.infoDescription.setText(item.description);
+                            binding.infoTitle.setText(item.title);
+                            Picasso.get().load(item.imageUrl).into(binding.infoImage);
+                        }
+
+                        @Override
+                        public void onViewClicked(View view, InfoDto item) {
+
+                        }
+                    }
+            );
+        }
+    };
+
     public InfoFragment() { super(InfoViewModel.class, FragmentInfoBinding::inflate);}
 
     @Override
     protected void prepareViewModel() {
-
+        viewModel.observeInfoDataList(this, list -> {
+            adapter.setItems(list);
+        });
     }
 
     @Override
     protected void bindViews() {
-        binding.infoRecycler.setAdapter(new RecyclerViewAdapter<InfoDto, ItemInfoBinding>() {
+        binding.infoRecycler.setAdapter(adapter);
+    }
 
-            @NonNull
-            @Override
-            public ViewHolder<InfoDto, ItemInfoBinding> onCreateViewHolder(
-                    @NonNull ViewGroup parent,
-                    int viewType
-            ) {
-                return new ViewHolder<>(
-                        ItemInfoBinding.inflate(getLayoutInflater()),
-                        new AdapterCallback<InfoDto, ItemInfoBinding>() {
-                            @Override
-                            public void bindViews(ItemInfoBinding binding, InfoDto item, int position) {
-                                binding.infoDescription.setText(item.description);
-                                binding.infoTitle.setText(item.title);
-                                Picasso.get().load(item.imageUrl).into(binding.infoImage);
-                            }
-
-                            @Override
-                            public void onViewClicked(View view, InfoDto item) {
-
-                            }
-                        }
-                );
-            }
-        });
+    @Override
+    protected void refresh() {
+        viewModel.getInfo();
     }
 }

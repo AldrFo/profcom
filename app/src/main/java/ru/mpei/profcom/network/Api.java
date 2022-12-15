@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import ru.mpei.profcom.entry.model.UserData;
+import ru.mpei.profcom.main.model.entities.InfoDto;
 import ru.mpei.profcom.main.model.entities.NewsDto;
 
 public interface Api {
@@ -40,5 +41,8 @@ public interface Api {
 
     @GET("get_news.php")
     Single<List<NewsDto>> getNews();
+
+    @GET("get_info.php")
+    Single<List<InfoDto>> getInfo();
 
 }

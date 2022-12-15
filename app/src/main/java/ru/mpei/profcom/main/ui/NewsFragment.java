@@ -46,9 +46,7 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
 
     @Override
     protected void prepareViewModel() {
-        viewModel.observeNews(this, dtos -> {
-            adapter.setItems(dtos);
-        });
+        viewModel.observeNews(this, adapter::setItems);
     }
 
     @Override
