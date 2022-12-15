@@ -14,11 +14,13 @@ import ru.mpei.profcom.core.NavigationController;
 import ru.mpei.profcom.entry.ui.CategoryChooseFragment;
 import ru.mpei.profcom.entry.ui.EntryFragment;
 import ru.mpei.profcom.entry.ui.RegisterFragment;
+import ru.mpei.profcom.main.ui.EventsFragment;
 import ru.mpei.profcom.main.ui.InfoFragment;
 import ru.mpei.profcom.main.ui.MainFragment;
 import ru.mpei.profcom.main.ui.NewsFragment;
 import ru.mpei.profcom.main.ui.OrgFragment;
 import ru.mpei.profcom.main.ui.OrganizationsFragment;
+import ru.mpei.profcom.main.ui.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationController {
 
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
     public static final int INFO_FRAGMENT = 5;
     public static final int ORGS_FRAGMENT = 6;
     public static final int ORG_FRAGMENT = 7;
+    public static final int PROFILE_FRAGMENT = 8;
+    public static final int EVENTS_FRAGMENT = 9;
+
 
     public static SharedPreferences prefs;
 
@@ -74,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
                 break;
             case ORG_FRAGMENT:
                 ft.replace(R.id.main_container, new OrgFragment(bundle));
+                break;
+            case PROFILE_FRAGMENT:
+                ft.replace(R.id.main_container, new ProfileFragment());
+                break;
+            case EVENTS_FRAGMENT:
+                ft.replace(R.id.main_container, new EventsFragment());
                 break;
             default:
                 throw new IllegalArgumentException("Fragment doesn't exist");

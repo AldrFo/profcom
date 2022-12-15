@@ -14,12 +14,15 @@ public class UserData {
     public String group;
     @SerializedName("prof_card_number")
     public String profCard;
+    @SerializedName("type")
+    public String type;
 
-    public UserData(int id, String email, String password, String group, String profCard){
+    public UserData(int id, String email, String password, String group, String profCard, String type){
         this.id = id;
         this.email = email;
         this.password = password;
         this.group = group;
         this.profCard = profCard;
+        this.type = type;
     }
 }
