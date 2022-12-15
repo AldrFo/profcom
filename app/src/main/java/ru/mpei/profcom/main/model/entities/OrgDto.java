@@ -2,7 +2,9 @@ package ru.mpei.profcom.main.model.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-public class OrgDto {
+import java.io.Serializable;
+
+public class OrgDto implements Serializable {
 
     @SerializedName("name")
     public String name;

@@ -17,6 +17,8 @@ import ru.mpei.profcom.entry.ui.RegisterFragment;
 import ru.mpei.profcom.main.ui.InfoFragment;
 import ru.mpei.profcom.main.ui.MainFragment;
 import ru.mpei.profcom.main.ui.NewsFragment;
+import ru.mpei.profcom.main.ui.OrgFragment;
+import ru.mpei.profcom.main.ui.OrganizationsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationController {
 
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
     public static final int NEWS_FRAGMENT = 3;
     public static final int CATEGORY_FRAGMENT = 4;
     public static final int INFO_FRAGMENT = 5;
+    public static final int ORGS_FRAGMENT = 6;
+    public static final int ORG_FRAGMENT = 7;
 
     public static SharedPreferences prefs;
 
@@ -64,6 +68,12 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
                 break;
             case INFO_FRAGMENT:
                 ft.replace(R.id.main_container, new InfoFragment());
+                break;
+            case ORGS_FRAGMENT:
+                ft.replace(R.id.main_container, new OrganizationsFragment());
+                break;
+            case ORG_FRAGMENT:
+                ft.replace(R.id.main_container, new OrgFragment(bundle));
                 break;
             default:
                 throw new IllegalArgumentException("Fragment doesn't exist");

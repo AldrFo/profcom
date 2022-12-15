@@ -1,5 +1,7 @@
 package ru.mpei.profcom.main.ui;
 
+import android.os.Bundle;
+
 import androidx.lifecycle.Observer;
 
 import com.squareup.picasso.Picasso;
@@ -11,14 +13,15 @@ import ru.mpei.profcom.main.model.entities.OrgDto;
 
 public class OrgFragment extends BaseFragment<FragmentOrgBinding, OrgViewModel> {
 
-    public OrgFragment() { super(OrgViewModel.class, FragmentOrgBinding::inflate);}
+    private final OrgDto item;
 
-    private OrgDto item; //либо инициализируй его, либо удали его, либо иди нахуй
+    public OrgFragment(Bundle bundle) {
+        super(OrgViewModel.class, FragmentOrgBinding::inflate);
+        this.item = (OrgDto) bundle.getSerializable("organization");
+    }
 
     @Override
-    protected void prepareViewModel() {
-
-    }
+    protected void prepareViewModel() {}
 
     @Override
     protected void bindViews() {
@@ -26,6 +29,5 @@ public class OrgFragment extends BaseFragment<FragmentOrgBinding, OrgViewModel> 
         binding.orgName.setText(item.name);
         Picasso.get().load(item.logoUrl).into(binding.orgImage);
     }
-
 
 }

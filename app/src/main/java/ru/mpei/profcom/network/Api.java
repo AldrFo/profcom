@@ -13,6 +13,7 @@ import retrofit2.http.Query;
 import ru.mpei.profcom.entry.model.UserData;
 import ru.mpei.profcom.main.model.entities.InfoDto;
 import ru.mpei.profcom.main.model.entities.NewsDto;
+import ru.mpei.profcom.main.model.entities.OrgDto;
 
 public interface Api {
 
@@ -45,4 +46,11 @@ public interface Api {
     @GET("get_info.php")
     Single<List<InfoDto>> getInfo();
 
+    @GET("get_orgs.php")
+    Single<List<OrgDto>> getOrgs();
+
+    @GET("get_user_data.php")
+    Single<UserData> getUserData(
+        @Query("id") String id
+    );
 }

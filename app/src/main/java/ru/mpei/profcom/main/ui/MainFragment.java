@@ -22,5 +22,8 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainViewMode
         binding.infoButton.setOnClickListener(view -> {
             navigate(MainActivity.INFO_FRAGMENT, null);
         });
+        binding.organizationsButton.setOnClickListener(view -> {
+            navigate(MainActivity.ORGS_FRAGMENT, null);
+        });
     }
 }
