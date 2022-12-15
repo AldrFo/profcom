@@ -2,6 +2,7 @@ package ru.mpei.profcom.entry.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -36,6 +37,7 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
     }
 
     public void confirmChoice(){
+        Log.d("asas", "choice: " + choice);
         if(getPdIbByName(binding.editTextTextPersonName.getText().toString()) == -1 && choice.equals("pb")) {
             Toast.makeText(requireContext(), "Введите название ПБ", Toast.LENGTH_LONG).show();
             return;
@@ -53,7 +55,8 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
             case "ПБ ИВТИ":
                 return 1;
             default:
-                Toast.makeText(requireContext(), "Такого ПБ нет!", Toast.LENGTH_LONG).show();
+                if(choice.equals("pb"))
+                    Toast.makeText(requireContext(), "Такого ПБ нет!", Toast.LENGTH_LONG).show();
                 return -1;
         }
     }
@@ -61,6 +64,9 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
     @SuppressLint("NonConstantResourceId")
     private void setChoice(int id){
         switch(id) {
+            case R.id.student_radio:
+                choice = "standart";
+                break;
             case R.id.pb_member_radio:
                 choice = "pb";
                 break;
