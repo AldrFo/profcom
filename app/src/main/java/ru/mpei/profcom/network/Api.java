@@ -1,5 +1,7 @@
 package ru.mpei.profcom.network;
 
+import java.util.List;
+
 import io.reactivex.rxjava3.core.Single;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -9,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import ru.mpei.profcom.entry.model.UserData;
+import ru.mpei.profcom.main.model.entities.NewsDto;
 
 public interface Api {
 
@@ -34,5 +37,8 @@ public interface Api {
         @Field("type") String type,
         @Field("pb_id") int pbId
     );
+
+    @GET("get_news.php")
+    Single<List<NewsDto>> getNews();
 
 }

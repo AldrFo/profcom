@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 import ru.mpei.profcom.MainActivity;
 import ru.mpei.profcom.R;
 import ru.mpei.profcom.core.BaseFragment;
@@ -35,8 +37,10 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
     }
 
     public void confirmChoice(){
-        if(getPdIbByName(binding.editTextTextPersonName.getText().toString()) == -1)
+        if(getPdIbByName(binding.editTextTextPersonName.getText().toString()) == -1 && choice.equals("pb")) {
+            Toast.makeText(requireContext(), "Введите название ПБ", Toast.LENGTH_LONG).show();
             return;
+        }
         viewModel.setUserType(
                 bundle.getString("email"),
                 choice,
@@ -45,7 +49,7 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
     }
 
     private int getPdIbByName(String name){
-        switch (name){
+        switch(name.toUpperCase(Locale.ROOT)){
             case "ПБ ИВТИ":
                 return 1;
             default:

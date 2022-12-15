@@ -4,7 +4,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import ru.mpei.profcom.core.AdapterCallback;
 import ru.mpei.profcom.core.BaseFragment;
@@ -16,27 +15,16 @@ import ru.mpei.profcom.main.model.entities.NewsDto;
 
 public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewModel> {
 
-    public NewsFragment() {
-        super(NewsViewModel.class, FragmentNewsBinding::inflate);
-    }
+    private final RecyclerViewAdapter<NewsDto, ItemNewsBinding> adapter = new RecyclerViewAdapter<NewsDto, ItemNewsBinding>() {
 
-    @Override
-    protected void prepareViewModel() {
-
-    }
-
-    @Override
-    protected void bindViews() {
-        binding.newsRecycler.setAdapter(new RecyclerViewAdapter<NewsDto, ItemNewsBinding>() {
-
-            @NonNull
-            @Override
-            public ViewHolder<NewsDto, ItemNewsBinding> onCreateViewHolder(
+        @NonNull
+        @Override
+        public ViewHolder<NewsDto, ItemNewsBinding> onCreateViewHolder(
                 @NonNull ViewGroup parent,
                 int viewType
-            ) {
-                return new ViewHolder<>(
-                    ItemNewsBinding.inflate(getLayoutInflater()),
+        ) {
+            return new ViewHolder<>(
+                    ItemNewsBinding.inflate(getLayoutInflater(), parent, false),
                     new AdapterCallback<NewsDto, ItemNewsBinding>() {
                         @Override
                         public void bindViews(ItemNewsBinding binding, NewsDto item, int position) {
@@ -48,8 +36,28 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
                         @Override
                         public void onViewClicked(View view, NewsDto item) {}
                     }
-                );
-            }
+            );
+        }
+    };
+
+    public NewsFragment() {
+        super(NewsViewModel.class, FragmentNewsBinding::inflate);
+    }
+
+    @Override
+    protected void prepareViewModel() {
+        viewModel.observeNews(this, dtos -> {
+            adapter.setItems(dtos);
         });
+    }
+
+    @Override
+    protected void bindViews() {
+        binding.newsRecycler.setAdapter(adapter);
+    }
+
+    @Override
+    protected void refresh() {
+        viewModel.getNews();
     }
 }
