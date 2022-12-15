@@ -17,7 +17,7 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainViewMode
     @Override
     protected void bindViews() {
         binding.newsButton.setOnClickListener(view -> {
-            navigate(MainActivity.NEWS_FRAGMENT);
+            navigate(MainActivity.NEWS_FRAGMENT, null);
         });
     }
 }
