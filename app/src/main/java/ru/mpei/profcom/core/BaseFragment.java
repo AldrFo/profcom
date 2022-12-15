@@ -32,11 +32,11 @@ public abstract class BaseFragment <B extends ViewBinding, VM extends ViewModel>
 
     protected void refresh(){}
 
-    protected void navigate(int fragmentId){
+    protected void navigate(int fragmentId, Bundle bundle){
         if(!(getActivity() instanceof NavigationController))
             return;
 
-        ((NavigationController) getActivity()).navigate(fragmentId);
+        ((NavigationController) getActivity()).navigate(fragmentId, bundle);
     }
 
     @Nullable

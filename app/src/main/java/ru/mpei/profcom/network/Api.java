@@ -30,7 +30,7 @@ public interface Api {
     @FormUrlEncoded
     @POST("set_user_type.php")
     Single<Response<ResponseBody>> setUserType(
-        @Field("id") int id,
+        @Field("email") String email,
         @Field("type") String type,
         @Field("pb_id") int pbId
     );

@@ -1,6 +1,7 @@
 package ru.mpei.profcom.entry.ui;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import ru.mpei.profcom.MainActivity;
@@ -12,13 +13,18 @@ import ru.mpei.profcom.entry.model.EntryViewModel;
 public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding, EntryViewModel> {
 
     private String choice;
+    private Bundle bundle;
 
-    public CategoryChooseFragment() { super(EntryViewModel.class, FragmentCategoryBinding::inflate); }
+    public CategoryChooseFragment(Bundle bundle) {
+        super(EntryViewModel.class, FragmentCategoryBinding::inflate);
+        this.bundle = bundle;
+    }
 
     @Override
     protected void prepareViewModel() {
         viewModel.observeCategory(this, response -> {
-            navigate(MainActivity.MAIN_FRAGMENT);
+            viewModel.entry(bundle.getString("email"), bundle.getString("password"));
+            navigate(MainActivity.MAIN_FRAGMENT, null);
         });
     }
 
@@ -32,7 +38,7 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
         if(getPdIbByName(binding.editTextTextPersonName.getText().toString()) == -1)
             return;
         viewModel.setUserType(
-                MainActivity.prefs.getInt("id", -1),
+                bundle.getString("email"),
                 choice,
                 getPdIbByName(binding.editTextTextPersonName.getText().toString())
         );

@@ -16,7 +16,7 @@ public class EntryFragment extends BaseFragment<FragmentEntryBinding, EntryViewM
     protected void prepareViewModel() {
         viewModel.observeEntry(this, response -> {
             if(response.isSuccessful())
-                navigate(MainActivity.MAIN_FRAGMENT);
+                navigate(MainActivity.MAIN_FRAGMENT, null);
         });
     }
 
@@ -29,7 +29,7 @@ public class EntryFragment extends BaseFragment<FragmentEntryBinding, EntryViewM
             );
         });
         binding.registerButton.setOnClickListener(view -> {
-            navigate(MainActivity.REGISTER_FRAGMENT);
+            navigate(MainActivity.REGISTER_FRAGMENT, null);
         });
     }
 

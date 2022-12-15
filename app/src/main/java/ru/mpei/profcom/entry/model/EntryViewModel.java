@@ -78,7 +78,8 @@ public class EntryViewModel extends ViewModel {
 
                 @Override
                 public void onSuccess(@NonNull Response<ResponseBody> response) {
-                    registerData.postValue(response);
+                    if(response.isSuccessful())
+                        registerData.postValue(response);
                 }
 
                 @Override
@@ -88,8 +89,8 @@ public class EntryViewModel extends ViewModel {
             });
     }
 
-    public void setUserType(int id, String type, int pbId){
-        api.setUserType(id, type, pbId)
+    public void setUserType(String email, String type, int pbId){
+        api.setUserType(email, type, pbId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new SingleObserver<Response<ResponseBody>>() {

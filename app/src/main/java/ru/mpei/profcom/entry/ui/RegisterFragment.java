@@ -1,12 +1,9 @@
 package ru.mpei.profcom.entry.ui;
 
-import android.view.View;
+import android.os.Bundle;
+import android.widget.Toast;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-
-import okhttp3.ResponseBody;
-import retrofit2.Response;
+import ru.mpei.profcom.MainActivity;
 import ru.mpei.profcom.core.BaseFragment;
 import ru.mpei.profcom.databinding.FragmentRegisterBinding;
 import ru.mpei.profcom.entry.model.EntryViewModel;
@@ -19,28 +16,25 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Entr
 
     @Override
     protected void prepareViewModel() {
-        viewModel.observeRegister(getViewLifecycleOwner(), new Observer<Response<ResponseBody>>() {
-            @Override
-            public void onChanged(Response<ResponseBody> responseBodyResponse) {
-
-            }
+        viewModel.observeRegister(getViewLifecycleOwner(), response -> {
+            Bundle b = new Bundle();
+            b.putString("email", binding.editEmail.getText().toString());
+            b.putString("password", binding.editPassword.getText().toString());
+            navigate(MainActivity.CATEGORY_FRAGMENT, b);
         });
     }
 
     @Override
     protected void bindViews() {
-        binding.registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                register();
-            }
-        });
+        binding.registerBtn.setOnClickListener(view -> register());
     }
 
     private void register(){
 
-        if(binding.editPassword.getText() != binding.editPassConfirm.getText())
+        if(!binding.editPassword.getText().toString().equals(binding.editPassConfirm.getText().toString())) {
+            Toast.makeText(requireContext(), "Пароли не совпадают!", Toast.LENGTH_LONG).show();
             return;
+        }
 
         viewModel.register(
             binding.editEmail.getText().toString(),
