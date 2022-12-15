@@ -21,13 +21,22 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
     protected void prepareViewModel() {
         viewModel.getUserData(MainActivity.prefs.getInt("id", -1));
         viewModel.observeUserLiveData(this, userData -> {
+            if(Objects.equals(userData.type, "standart")){
+                binding.bookBtn.setVisibility(View.VISIBLE);
+                binding.enterPbBtn.setVisibility(View.VISIBLE);
+            }
+            else if (Objects.equals(userData.type, "profcom")){
+                binding.bookBtn.setVisibility(View.VISIBLE);
+                binding.metodBtn.setVisibility(View.VISIBLE);
+            }
+            else{
+                binding.bookBtn.setVisibility(View.VISIBLE);
+                binding.metodBtn.setVisibility(View.VISIBLE);
+                binding.boardBtn.setVisibility(View.VISIBLE);
+            }
             binding.userEmail.setText(userData.email);
             binding.userGroup.setText(userData.group);
             binding.userCardNumber.setText(userData.profCard);
-
-            if(Objects.equals(userData.type, "student")){
-                binding.bookBtn.setVisibility(View.GONE);
-            }
         });
     }
 

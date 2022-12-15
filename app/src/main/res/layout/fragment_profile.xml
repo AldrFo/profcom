@@ -69,30 +69,34 @@
 
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/book_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Книжка активности"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/metod_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Методические материалы"/>
+        android:text="Методические материалы"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/board_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Доска заданий"/>
+        android:text="Доска заданий"
+        android:visibility="gone"/>
 
     <Button
-        android:id="@+id/plan_btn"
+        android:id="@+id/enter_pb_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="План работы"/>
+        android:text="Анкета"
+        android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/book_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Книжка активности"/>
+
 
 </LinearLayout>
