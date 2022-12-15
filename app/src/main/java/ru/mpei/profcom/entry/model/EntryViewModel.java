@@ -22,7 +22,7 @@ public class EntryViewModel extends ViewModel {
 
     private final MutableLiveData<Response<UserData>> entryData = new MutableLiveData<>();
     private final MutableLiveData<Response<ResponseBody>> registerData = new MutableLiveData<>();
-    private final MutableLiveData<Response<ResponseBody>> categoryData = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> categoryData = new MutableLiveData<>();
     private final MutableLiveData<Throwable> error = new MutableLiveData<>();
 
     public void observeEntry(LifecycleOwner l, Observer<Response<UserData>> o){
@@ -33,7 +33,7 @@ public class EntryViewModel extends ViewModel {
         registerData.observe(l, o);
     }
 
-    public void observeCategory(LifecycleOwner l, Observer<Response<ResponseBody>> o){
+    public void observeCategory(LifecycleOwner l, Observer<Boolean> o){
         categoryData.observe(l, o);
     }
 
@@ -85,34 +85,16 @@ public class EntryViewModel extends ViewModel {
             });
     }
 
-    public void setUserType(String email, String type, int pbId){
-        api.setUserType(email, type, pbId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new SingleObserver<Response<ResponseBody>>() {
-                @Override
-                public void onSubscribe(@NonNull Disposable d) {}
-
-                @Override
-                public void onSuccess(@NonNull Response<ResponseBody> response) {
-                    if(response.isSuccessful())
-                        categoryData.postValue(response);
-                }
-
-                @Override
-                public void onError(@NonNull Throwable e) {
-                    error.postValue(e);
-                }
-            });
-    }
-
     public void setUserTypeWithEntry(String email, String password, String type, int pbId) {
         api.setUserType(email, type, pbId)
                 .flatMap(response -> api.entry(email, password))
                 .filter(Response::isSuccessful)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::saveUserData, error::postValue);
+                .subscribe(b -> {
+                    categoryData.postValue(true);
+                    saveUserData(b);
+                }, error::postValue);
 
     }
 
