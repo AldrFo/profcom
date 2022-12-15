@@ -70,6 +70,8 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
             case R.id.profcom_boss_radio:
                 choice = "president";
                 break;
+            default:
+                choice = "student";
         }
     }
 

@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import ru.mpei.profcom.entry.model.UserData;
+import ru.mpei.profcom.main.model.entities.EventDto;
 import ru.mpei.profcom.main.model.entities.InfoDto;
 import ru.mpei.profcom.main.model.entities.NewsDto;
 import ru.mpei.profcom.main.model.entities.OrgDto;
@@ -51,6 +52,21 @@ public interface Api {
 
     @GET("get_user_data.php")
     Single<UserData> getUserData(
-        @Query("id") String id
+        @Query("id") int id
     );
+
+    @FormUrlEncoded
+    @POST("add_event.php")
+    Single<Response<ResponseBody>> addEvent(
+        @Field("id") int id,
+        @Field("name") String name,
+        @Field("description") String description,
+        @Field("link") String link
+    );
+
+    @GET("get_events.php")
+    Single<List<EventDto>> getEvents(
+            @Query("id") int id
+    );
+
 }

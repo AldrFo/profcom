@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="500dp"
+    android:layout_gravity="center"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_event_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edit_background"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:hint="Введите название"/>
+
+        <EditText
+            android:id="@+id/edit_event_description"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/edit_background"
+            android:gravity="top|left"
+            android:inputType="textMultiLine|textCapSentences"
+            android:padding="5dp"
+            android:hint="Описание" />
+
+        <EditText
+            android:id="@+id/edit_event_link"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edit_background"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:hint="Добавьте ссылку"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_event_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="bottom"
+        android:text="Сохранить"/>
+
+</androidx.cardview.widget.CardView>
