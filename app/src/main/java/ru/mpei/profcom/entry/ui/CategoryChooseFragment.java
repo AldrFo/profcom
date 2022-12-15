@@ -25,7 +25,6 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
     @Override
     protected void prepareViewModel() {
         viewModel.observeCategory(this, response -> {
-            viewModel.entry(bundle.getString("email"), bundle.getString("password"));
             navigate(MainActivity.MAIN_FRAGMENT, null);
         });
     }
@@ -41,8 +40,9 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
             Toast.makeText(requireContext(), "Введите название ПБ", Toast.LENGTH_LONG).show();
             return;
         }
-        viewModel.setUserType(
+        viewModel.setUserTypeWithEntry(
                 bundle.getString("email"),
+                bundle.getString("password"),
                 choice,
                 getPdIbByName(binding.editTextTextPersonName.getText().toString())
         );

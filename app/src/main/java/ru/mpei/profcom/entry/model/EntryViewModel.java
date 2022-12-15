@@ -53,11 +53,7 @@ public class EntryViewModel extends ViewModel {
                 public void onSuccess(@NonNull Response<UserData> response) {
                     if(response.isSuccessful() && response.body() != null) {
                         entryData.postValue(response);
-                        MainActivity.prefs.edit()
-                            .putInt("id", response.body().id)
-                            .putString("email", response.body().email)
-                            .putString("password", response.body().password)
-                            .apply();
+                        saveUserData(response);
                     }
                 }
 
@@ -110,4 +106,21 @@ public class EntryViewModel extends ViewModel {
             });
     }
 
+    public void setUserTypeWithEntry(String email, String password, String type, int pbId) {
+        api.setUserType(email, type, pbId)
+                .flatMap(response -> api.entry(email, password))
+                .filter(Response::isSuccessful)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::saveUserData, error::postValue);
+
+    }
+
+    private void saveUserData(Response<UserData> response){
+        MainActivity.prefs.edit()
+                .putInt("id", response.body().id)
+                .putString("email", response.body().email)
+                .putString("password", response.body().password)
+                .apply();
+    }
 }
