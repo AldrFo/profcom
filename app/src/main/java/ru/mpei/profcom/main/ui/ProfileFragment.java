@@ -38,6 +38,7 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
             navigate(MainActivity.ENTRY_FRAGMENT, null);
         });
         binding.metodBtn.setOnClickListener(view -> navigate(MainActivity.LEARNING_FRAGMENT, null));
+        binding.boardBtn.setOnClickListener(view -> navigate(MainActivity.TASKS_FRAGMENT, null));
     }
 
     private void setVisibles(String type){

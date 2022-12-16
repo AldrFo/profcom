@@ -17,6 +17,7 @@ import ru.mpei.profcom.main.model.entities.InfoDto;
 import ru.mpei.profcom.main.model.entities.LearnDto;
 import ru.mpei.profcom.main.model.entities.NewsDto;
 import ru.mpei.profcom.main.model.entities.OrgDto;
+import ru.mpei.profcom.main.model.entities.TaskDto;
 
 public interface Api {
 
@@ -81,4 +82,14 @@ public interface Api {
     @GET("get_learnings.php")
     Single<List<LearnDto>> getLearnings();
 
+    @GET("get_tasks.php")
+    Single<List<TaskDto>> getTasks(
+        @Query("id") int id
+    );
+
+    @FormUrlEncoded
+    @POST("complete_task.php")
+    Completable completeTask(
+        @Field("id") int id
+    );
 }

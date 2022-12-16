@@ -4,8 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class TaskDto {
 
-    @SerializedName("pb_member_id")
+    @SerializedName("id")
     public int id;
+    @SerializedName("pb_member_id")
+    public int pbMemberId;
     @SerializedName("name")
     public String name;
     @SerializedName("description")
@@ -16,7 +18,7 @@ public class TaskDto {
     public String deadline;
 
     public TaskDto(int id, String name, String description, String start, String deadline){
-        this.id = id;
+        this.pbMemberId = id;
         this.name = name;
         this.description = description;
         this.start = start;

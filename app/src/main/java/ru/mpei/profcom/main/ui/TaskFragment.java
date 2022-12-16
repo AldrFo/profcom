@@ -1,21 +1,16 @@
 package ru.mpei.profcom.main.ui;
 
-import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import ru.mpei.profcom.core.AdapterCallback;
 import ru.mpei.profcom.core.BaseFragment;
-import ru.mpei.profcom.core.Inflater;
 import ru.mpei.profcom.core.RecyclerViewAdapter;
 import ru.mpei.profcom.databinding.FragmentTasksBinding;
-import ru.mpei.profcom.databinding.ItemEventBinding;
 import ru.mpei.profcom.databinding.ItemTaskBinding;
 import ru.mpei.profcom.main.model.TaskViewModel;
-import ru.mpei.profcom.main.model.entities.EventDto;
 import ru.mpei.profcom.main.model.entities.TaskDto;
 
 public class TaskFragment extends BaseFragment<FragmentTasksBinding, TaskViewModel> {
@@ -29,7 +24,7 @@ public class TaskFragment extends BaseFragment<FragmentTasksBinding, TaskViewMod
                 @NonNull ViewGroup parent,
                 int viewType
         ) {
-            return new ViewHolder<TaskDto, ItemTaskBinding>(
+            return new ViewHolder<>(
                     ItemTaskBinding.inflate(getLayoutInflater(), parent, false),
                     new AdapterCallback<TaskDto, ItemTaskBinding>() {
                         @Override
@@ -38,14 +33,16 @@ public class TaskFragment extends BaseFragment<FragmentTasksBinding, TaskViewMod
                             binding.taskDescription.setText(item.description);
                             binding.taskStart.setText(item.start);
                             binding.taskDeadline.setText(item.deadline);
-                            binding.taskCheckbox.setOnClickListener( v -> {
+                            binding.taskCheckbox.setOnClickListener(v -> {
+                                viewModel.completeTask(item.id);
                                 binding.taskCheckbox.setChecked(true);
                                 adapter.removeItem(item);
-                           });
+                            });
                         }
 
                         @Override
-                        public void onViewClicked(View view, TaskDto item) {}
+                        public void onViewClicked(View view, TaskDto item) {
+                        }
                     }
             );
         }

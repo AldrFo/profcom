@@ -2,6 +2,7 @@ package ru.mpei.profcom.main.ui;
 
 import android.app.Dialog;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,9 @@ public class EventsFragment extends BaseFragment<FragmentEventsBinding, EventsVi
                         public void bindViews(ItemEventBinding binding, EventDto item, int position) {
                             binding.eventName.setText(item.name);
                             binding.eventDescription.setText(item.description);
-                            String link = "<a href=\"" + item.link + "\"> " + item.name + "</a>";
+                            String link = "<a href=\"" + item.link + "\"> " + item.link + "</a>";
                             binding.eventLink.setText(Html.fromHtml(link));
+                            binding.eventLink.setMovementMethod(LinkMovementMethod.getInstance());
                         }
 
                         @Override

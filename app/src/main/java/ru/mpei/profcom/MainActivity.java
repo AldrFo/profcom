@@ -23,6 +23,7 @@ import ru.mpei.profcom.main.ui.NewsFragment;
 import ru.mpei.profcom.main.ui.OrgFragment;
 import ru.mpei.profcom.main.ui.OrganizationsFragment;
 import ru.mpei.profcom.main.ui.ProfileFragment;
+import ru.mpei.profcom.main.ui.TaskFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationController {
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
     public static final int EVENTS_FRAGMENT = 9;
     public static final int REQUEST_FRAGMENT = 10;
     public static final int LEARNING_FRAGMENT = 11;
+    public static final int TASKS_FRAGMENT = 12;
 
     public static SharedPreferences prefs;
 
@@ -94,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
                 break;
             case LEARNING_FRAGMENT:
                 ft.replace(R.id.main_container, new LearningFragment());
+                break;
+            case TASKS_FRAGMENT:
+                ft.replace(R.id.main_container, new TaskFragment());
                 break;
             default:
                 throw new IllegalArgumentException("Fragment doesn't exist");
