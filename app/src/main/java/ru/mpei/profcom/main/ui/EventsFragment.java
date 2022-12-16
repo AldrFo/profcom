@@ -30,7 +30,7 @@ public class EventsFragment extends BaseFragment<FragmentEventsBinding, EventsVi
                 @NonNull ViewGroup parent,
                 int viewType
         ) {
-            return new ViewHolder<EventDto, ItemEventBinding>(
+            return new ViewHolder<>(
                     ItemEventBinding.inflate(getLayoutInflater(), parent, false),
                     new AdapterCallback<EventDto, ItemEventBinding>() {
                         @Override
@@ -60,21 +60,17 @@ public class EventsFragment extends BaseFragment<FragmentEventsBinding, EventsVi
         FragmentAddEventBinding bind =
                 FragmentAddEventBinding.inflate(getLayoutInflater(), binding.getRoot(), false);
 
-        dialog.findViewById(R.id.save_event_btn).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        EventDto event = new EventDto(
-                                MainActivity.prefs.getInt("id", -1),
-                                ((EditText) dialog.findViewById(R.id.edit_event_name)).getText().toString(),
-                                ((EditText) dialog.findViewById(R.id.edit_event_description)).getText().toString(),
-                                ((EditText) dialog.findViewById(R.id.edit_event_link)).getText().toString()
-                        );
-                        adapter.addItem(event);
-                        viewModel.addEvent(event.id, event.name, event.description, event.link);
-                        dialog.cancel();
-                    }
-                }
+        dialog.findViewById(R.id.save_event_btn).setOnClickListener(view -> {
+                EventDto event = new EventDto(
+                        MainActivity.prefs.getInt("id", -1),
+                        ((EditText) dialog.findViewById(R.id.edit_event_name)).getText().toString(),
+                        ((EditText) dialog.findViewById(R.id.edit_event_description)).getText().toString(),
+                        ((EditText) dialog.findViewById(R.id.edit_event_link)).getText().toString()
+                );
+                adapter.addItem(event);
+                viewModel.addEvent(event.id, event.name, event.description, event.link);
+                dialog.cancel();
+            }
         );
 
         dialog.show();

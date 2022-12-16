@@ -14,6 +14,7 @@ import retrofit2.http.Query;
 import ru.mpei.profcom.entry.model.UserData;
 import ru.mpei.profcom.main.model.entities.EventDto;
 import ru.mpei.profcom.main.model.entities.InfoDto;
+import ru.mpei.profcom.main.model.entities.LearnDto;
 import ru.mpei.profcom.main.model.entities.NewsDto;
 import ru.mpei.profcom.main.model.entities.OrgDto;
 
@@ -76,5 +77,8 @@ public interface Api {
         @Field("id") int id,
         @Field("description") String description
     );
+
+    @GET("get_learnings.php")
+    Single<List<LearnDto>> getLearnings();
 
 }

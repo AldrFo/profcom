@@ -32,13 +32,12 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
     @Override
     protected void bindViews() {
         binding.bookBtn.setOnClickListener(view -> navigate(MainActivity.EVENTS_FRAGMENT, null));
-        binding.requestButton.setOnClickListener(view ->{
-            navigate(MainActivity.REQUEST_FRAGMENT, null);
-        });
+        binding.requestButton.setOnClickListener(view -> navigate(MainActivity.REQUEST_FRAGMENT, null));
         binding.exitButton.setOnClickListener(view ->{
             ((NavigationController)requireActivity()).clear();
             navigate(MainActivity.ENTRY_FRAGMENT, null);
         });
+        binding.metodBtn.setOnClickListener(view -> navigate(MainActivity.LEARNING_FRAGMENT, null));
     }
 
     private void setVisibles(String type){
