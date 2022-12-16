@@ -2,6 +2,7 @@ package ru.mpei.profcom.network;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -66,7 +67,14 @@ public interface Api {
 
     @GET("get_events.php")
     Single<List<EventDto>> getEvents(
-            @Query("id") int id
+        @Query("id") int id
+    );
+
+    @FormUrlEncoded
+    @POST("add_active_request.php")
+    Completable addActiveRequest(
+        @Field("id") int id,
+        @Field("description") String description
     );
 
 }

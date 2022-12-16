@@ -14,6 +14,7 @@ import ru.mpei.profcom.core.NavigationController;
 import ru.mpei.profcom.entry.ui.CategoryChooseFragment;
 import ru.mpei.profcom.entry.ui.EntryFragment;
 import ru.mpei.profcom.entry.ui.RegisterFragment;
+import ru.mpei.profcom.main.model.RequestFragment;
 import ru.mpei.profcom.main.ui.EventsFragment;
 import ru.mpei.profcom.main.ui.InfoFragment;
 import ru.mpei.profcom.main.ui.MainFragment;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
     public static final int ORG_FRAGMENT = 7;
     public static final int PROFILE_FRAGMENT = 8;
     public static final int EVENTS_FRAGMENT = 9;
+    public static final int REQUEST_FRAGMENT = 10;
 
 
     public static SharedPreferences prefs;
@@ -86,10 +88,19 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
             case EVENTS_FRAGMENT:
                 ft.replace(R.id.main_container, new EventsFragment());
                 break;
+            case REQUEST_FRAGMENT:
+                ft.replace(R.id.main_container, new RequestFragment());
+                break;
             default:
                 throw new IllegalArgumentException("Fragment doesn't exist");
         }
         ft.commitNow();
+    }
+
+    @Override
+    public void clear() {
+        prefs.edit().clear().apply();
+        navigateStack.clear();
     }
 
     @Override

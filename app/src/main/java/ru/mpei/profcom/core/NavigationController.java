@@ -6,4 +6,6 @@ public interface NavigationController {
 
     void navigate(int fragmentId, Bundle bundle);
 
+    void clear();
+
 }
