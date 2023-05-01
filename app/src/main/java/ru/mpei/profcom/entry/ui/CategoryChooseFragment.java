@@ -3,6 +3,7 @@ package ru.mpei.profcom.entry.ui;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -25,8 +26,8 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
 
     @Override
     protected void prepareViewModel() {
-        viewModel.observeCategory(this, response -> {
-            navigate(MainActivity.MAIN_FRAGMENT, null);
+        viewModel.getCategoryData().observe(this, response -> {
+            navigate(MainActivity.PROFILE_FRAGMENT, null);
         });
     }
 
@@ -63,6 +64,11 @@ public class CategoryChooseFragment extends BaseFragment<FragmentCategoryBinding
 
     @SuppressLint("NonConstantResourceId")
     private void setChoice(int id){
+        if (id == R.id.pb_member_radio) {
+            binding.pbMemberRadio.setVisibility(View.VISIBLE);
+        } else {
+            binding.pbMemberRadio.setVisibility(View.GONE);
+        }
         switch(id) {
             case R.id.student_radio:
                 choice = "standart";

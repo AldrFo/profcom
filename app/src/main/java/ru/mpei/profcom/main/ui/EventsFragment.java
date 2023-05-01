@@ -59,9 +59,6 @@ public class EventsFragment extends BaseFragment<FragmentEventsBinding, EventsVi
         dialog.setContentView(R.layout.fragment_add_event);
         dialog.setTitle("Добавление мероприятия");
 
-        FragmentAddEventBinding bind =
-                FragmentAddEventBinding.inflate(getLayoutInflater(), binding.getRoot(), false);
-
         dialog.findViewById(R.id.save_event_btn).setOnClickListener(view -> {
                 EventDto event = new EventDto(
                         MainActivity.prefs.getInt("id", -1),
@@ -94,5 +91,5 @@ public class EventsFragment extends BaseFragment<FragmentEventsBinding, EventsVi
     }
 
     @Override
-    protected void refresh(){viewModel.getEvents(MainActivity.prefs.getInt("id", -1));}
+    protected void refresh(){ viewModel.getEvents(MainActivity.prefs.getInt("id", -1)); }
 }

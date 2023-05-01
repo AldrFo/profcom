@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PKEditText">
+        <item name="android:background">@drawable/edit_background</item>
+        <item name="android:textColor">@color/text_dark_gray</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="PKRadioButton">
+        <item name="android:textColor">@color/text_dark_gray</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.Profcom">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/bg_blue</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:statusBarColor">@color/empty</item>
+    </style>
+
+</resources>

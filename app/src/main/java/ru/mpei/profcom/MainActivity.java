@@ -1,12 +1,19 @@
 package ru.mpei.profcom;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Stack;
 
@@ -14,22 +21,20 @@ import ru.mpei.profcom.core.NavigationController;
 import ru.mpei.profcom.entry.ui.CategoryChooseFragment;
 import ru.mpei.profcom.entry.ui.EntryFragment;
 import ru.mpei.profcom.entry.ui.RegisterFragment;
-import ru.mpei.profcom.main.model.RequestFragment;
+import ru.mpei.profcom.main.ui.RequestFragment;
 import ru.mpei.profcom.main.ui.EventsFragment;
 import ru.mpei.profcom.main.ui.InfoFragment;
 import ru.mpei.profcom.main.ui.LearningFragment;
-import ru.mpei.profcom.main.ui.MainFragment;
 import ru.mpei.profcom.main.ui.NewsFragment;
 import ru.mpei.profcom.main.ui.OrgFragment;
 import ru.mpei.profcom.main.ui.OrganizationsFragment;
 import ru.mpei.profcom.main.ui.ProfileFragment;
 import ru.mpei.profcom.main.ui.TaskFragment;
 
-public class MainActivity extends AppCompatActivity implements NavigationController {
+public class MainActivity extends AppCompatActivity implements NavigationController, NavigationBarView.OnItemSelectedListener {
 
     public static final int REGISTER_FRAGMENT = -1;
     public static final int ENTRY_FRAGMENT = 1;
-    public static final int MAIN_FRAGMENT = 2;
     public static final int NEWS_FRAGMENT = 3;
     public static final int CATEGORY_FRAGMENT = 4;
     public static final int INFO_FRAGMENT = 5;
@@ -45,19 +50,53 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
 
     private final Stack<Integer> navigateStack = new Stack<>();
 
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.main_bottom_navigation);
+
         prefs = getPreferences(MODE_PRIVATE);
-        if(prefs.getInt("id", -1) == -1)
+        if(prefs.getInt("id", -1) == -1) {
             navigate(ENTRY_FRAGMENT, null);
-        else
-            navigate(MAIN_FRAGMENT, null);
+            bottomNavigationView.setVisibility(View.GONE);
+        } else {
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            navigate(PROFILE_FRAGMENT, null);
+        }
+        bottomNavigationView.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    @SuppressLint("NonConstantResourceId")
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.profile:
+                navigate(PROFILE_FRAGMENT, null);
+                break;
+            case R.id.news:
+                navigate(NEWS_FRAGMENT, null);
+                break;
+            case R.id.orgs:
+                navigate(ORGS_FRAGMENT, null);
+                break;
+            case R.id.info:
+                navigate(INFO_FRAGMENT, null);
+                break;
+        }
+        return true;
     }
 
     @Override
     public void navigate(int fragmentId, Bundle bundle) {
+        if (fragmentId == ENTRY_FRAGMENT || fragmentId == REGISTER_FRAGMENT || fragmentId == CATEGORY_FRAGMENT) {
+            bottomNavigationView.setVisibility(View.GONE);
+        } else {
+            bottomNavigationView.setVisibility(View.VISIBLE);
+        }
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         navigateStack.push(fragmentId);
         switch (fragmentId){
@@ -66,9 +105,6 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
                 break;
             case REGISTER_FRAGMENT:
                 ft.replace(R.id.main_container, new RegisterFragment());
-                break;
-            case MAIN_FRAGMENT:
-                ft.replace(R.id.main_container, new MainFragment());
                 break;
             case NEWS_FRAGMENT:
                 ft.replace(R.id.main_container, new NewsFragment());

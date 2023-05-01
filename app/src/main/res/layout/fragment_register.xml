@@ -2,58 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/bg_blue">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="Регистрация"/>
 
     <EditText
+        style="@style/PKEditText"
         android:id="@+id/edit_email"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="email"
+        android:layout_height="wrap_content"
+        android:hint="ОСЭП"
         android:padding="10dp"
         android:background="@drawable/edit_background"
+        android:inputType="textEmailAddress"
         android:layout_margin="10dp"/>
 
     <EditText
+        style="@style/PKEditText"
         android:id="@+id/edit_password"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:hint="Придумайте пароль"
         android:padding="10dp"
+        android:inputType="textPassword"
         android:background="@drawable/edit_background"
         android:layout_margin="10dp"/>
 
     <EditText
+        style="@style/PKEditText"
         android:id="@+id/edit_pass_confirm"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:hint="Подтвердите пароль"
         android:padding="10dp"
+        android:inputType="textPassword"
         android:background="@drawable/edit_background"
         android:layout_margin="10dp"/>
 
     <EditText
+        style="@style/PKEditText"
         android:id="@+id/edit_group"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:hint="Учебная группа"
         android:padding="10dp"
         android:background="@drawable/edit_background"
         android:layout_margin="10dp"/>
 
     <EditText
+        style="@style/PKEditText"
         android:id="@+id/edit_card_num"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:hint="Номер профсоюзной карты"
+        android:inputType="number"
         android:padding="10dp"
         android:background="@drawable/edit_background"
         android:layout_margin="10dp"/>
 
-        <Button
-            android:id="@+id/register_btn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_margin="20dp"
-            android:text="Регистрация"/>
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:text="Регистрация"/>
 
 </LinearLayout>

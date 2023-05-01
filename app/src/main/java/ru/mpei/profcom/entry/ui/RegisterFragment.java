@@ -17,7 +17,7 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Entr
 
     @Override
     protected void prepareViewModel() {
-        viewModel.observeRegister(getViewLifecycleOwner(), response -> {
+        viewModel.getRegisterData().observe(getViewLifecycleOwner(), response -> {
             Bundle b = new Bundle();
             b.putString("email", binding.editEmail.getText().toString());
             b.putString("password", binding.editPassword.getText().toString());
@@ -30,10 +30,10 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Entr
         binding.registerBtn.setOnClickListener(view -> register());
     }
 
-    private void register(){
+    private void register() {
 
         Regex emailRg = new Regex("[a-zA-Z0-9]+@mpei.ru");
-        Regex groupRg = new Regex("[А-Яа-я]+-\\d\\d-\\d\\dм?");
+        Regex groupRg = new Regex("[А-Яа-яa-zA-Z]+-\\d\\d-\\d\\dм?");
         Regex cardRg = new Regex("[0-9]+");
 
         String email = binding.editEmail.getText().toString();

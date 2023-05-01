@@ -33,9 +33,8 @@ public class TaskFragment extends BaseFragment<FragmentTasksBinding, TaskViewMod
                             binding.taskDescription.setText(item.description);
                             binding.taskStart.setText(item.start);
                             binding.taskDeadline.setText(item.deadline);
-                            binding.taskCheckbox.setOnClickListener(v -> {
+                            binding.completeTaskButton.setOnClickListener(v -> {
                                 viewModel.completeTask(item.id);
-                                binding.taskCheckbox.setChecked(true);
                                 adapter.removeItem(item);
                             });
                         }
@@ -49,11 +48,17 @@ public class TaskFragment extends BaseFragment<FragmentTasksBinding, TaskViewMod
     };
 
     @Override
-    protected void prepareViewModel() {viewModel.observeTasksData(this, adapter::setItems);}
+    protected void prepareViewModel() {
+        viewModel.observeTasksData(this, adapter::setItems);
+    }
 
     @Override
-    protected void bindViews() {binding.tasksRecycler.setAdapter(adapter);}
+    protected void bindViews() {
+        binding.tasksRecycler.setAdapter(adapter);
+    }
 
     @Override
-    protected void refresh(){viewModel.getTasksData();}
+    protected void refresh(){
+        viewModel.getTasksData();
+    }
 }

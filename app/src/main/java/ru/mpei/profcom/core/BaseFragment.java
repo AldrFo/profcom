@@ -28,7 +28,7 @@ public abstract class BaseFragment <B extends ViewBinding, VM extends ViewModel>
 
     protected abstract void prepareViewModel();
 
-    protected  abstract void bindViews();
+    protected abstract void bindViews();
 
     protected void refresh(){}
 

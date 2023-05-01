@@ -10,7 +10,7 @@ public final class InfoDto {
     @SerializedName("image_url")
     public String imageUrl;
 
-    InfoDto(String title, String description, String imageUrl){
+    public InfoDto(String title, String description, String imageUrl){
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;

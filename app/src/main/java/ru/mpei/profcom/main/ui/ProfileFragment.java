@@ -1,5 +1,6 @@
 package ru.mpei.profcom.main.ui;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.Observer;
@@ -25,6 +26,7 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
             binding.userEmail.setText(userData.email);
             binding.userGroup.setText(userData.group);
             binding.userCardNumber.setText(userData.profCard);
+            Log.d("lol", userData.type);
             setVisibles(userData.type);
         });
     }
@@ -42,22 +44,20 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
     }
 
     private void setVisibles(String type){
+        binding.requestButton.setVisibility(View.VISIBLE);
         switch (type){
             case "profcom":
             case "president":
                 binding.bookBtn.setVisibility(View.VISIBLE);
                 binding.metodBtn.setVisibility(View.VISIBLE);
-                binding.requestButton.setVisibility(View.VISIBLE);
                 break;
             case "pb":
                 binding.bookBtn.setVisibility(View.VISIBLE);
                 binding.metodBtn.setVisibility(View.VISIBLE);
                 binding.boardBtn.setVisibility(View.VISIBLE);
-                binding.requestButton.setVisibility(View.VISIBLE);
                 break;
             case "standart":
                 binding.bookBtn.setVisibility(View.VISIBLE);
-                binding.requestButton.setVisibility(View.VISIBLE);
                 break;
             default:
 

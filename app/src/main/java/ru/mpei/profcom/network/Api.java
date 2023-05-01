@@ -4,8 +4,6 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
-import okhttp3.ResponseBody;
-import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -23,7 +21,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("register.php")
-    Single<Response<ResponseBody>> register(
+    Completable register(
         @Field("email") String email,
         @Field("password") String password,
         @Field("learn_group") String group,
@@ -31,14 +29,14 @@ public interface Api {
     );
 
     @GET("entry.php")
-    Single<Response<UserData>> entry(
+    Single<UserData> entry(
         @Query("email") String email,
         @Query("password") String password
     );
 
     @FormUrlEncoded
     @POST("set_user_type.php")
-    Single<Response<ResponseBody>> setUserType(
+    Single<Boolean> setUserType(
         @Field("email") String email,
         @Field("type") String type,
         @Field("pb_id") int pbId
@@ -60,7 +58,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("add_event.php")
-    Single<Response<ResponseBody>> addEvent(
+    Completable addEvent(
         @Field("id") int id,
         @Field("name") String name,
         @Field("description") String description,

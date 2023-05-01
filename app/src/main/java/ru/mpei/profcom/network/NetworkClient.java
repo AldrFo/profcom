@@ -36,7 +36,7 @@ public class NetworkClient {
         return _loggingInterceptor;
     }
 
-    public static <T> T createApi(Class<T> clazz){
-        return retrofitBuilder.build().create(clazz);
+    public static <T> Api createApi(Class<T> clazz){
+        return new ApiImpl();
     }
 }

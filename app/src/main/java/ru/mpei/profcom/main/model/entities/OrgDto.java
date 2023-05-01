@@ -13,7 +13,7 @@ public class OrgDto implements Serializable {
     @SerializedName("logo_url")
     public String logoUrl;
 
-    OrgDto(String name, String description, String logoUrl){
+    public OrgDto(String name, String description, String logoUrl){
         this.name = name;
         this.description = description;
         this.logoUrl = logoUrl;
