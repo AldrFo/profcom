@@ -21,6 +21,8 @@ import ru.mpei.profcom.core.NavigationController;
 import ru.mpei.profcom.entry.ui.CategoryChooseFragment;
 import ru.mpei.profcom.entry.ui.EntryFragment;
 import ru.mpei.profcom.entry.ui.RegisterFragment;
+import ru.mpei.profcom.main.ui.GratitudesFragment;
+import ru.mpei.profcom.main.ui.LearnFragment;
 import ru.mpei.profcom.main.ui.RequestFragment;
 import ru.mpei.profcom.main.ui.EventsFragment;
 import ru.mpei.profcom.main.ui.InfoFragment;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
     public static final int REQUEST_FRAGMENT = 10;
     public static final int LEARNING_FRAGMENT = 11;
     public static final int TASKS_FRAGMENT = 12;
+    public static final int LEARN_FRAGMENT = 13;
+    public static final int GRATITUDES_FRAGMENT = 14;
 
     public static SharedPreferences prefs;
 
@@ -136,6 +140,12 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
             case TASKS_FRAGMENT:
                 ft.replace(R.id.main_container, new TaskFragment());
                 break;
+            case LEARN_FRAGMENT:
+                ft.replace(R.id.main_container, new LearnFragment(bundle));
+                break;
+            case GRATITUDES_FRAGMENT:
+                ft.replace(R.id.main_container, new GratitudesFragment());
+                break;
             default:
                 throw new IllegalArgumentException("Fragment doesn't exist");
         }
@@ -156,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements NavigationControl
         if(navigateStack.isEmpty())
             return;
         Integer id = navigateStack.pop();
-        Log.d("asas", String.valueOf(id));
         if(id != 0 && id != CATEGORY_FRAGMENT && id != REGISTER_FRAGMENT && id != ENTRY_FRAGMENT){
             navigate(id, null);
         }

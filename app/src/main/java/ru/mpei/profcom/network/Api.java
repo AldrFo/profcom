@@ -11,6 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import ru.mpei.profcom.entry.model.UserData;
 import ru.mpei.profcom.main.model.entities.EventDto;
+import ru.mpei.profcom.main.model.entities.GratitudeDto;
 import ru.mpei.profcom.main.model.entities.InfoDto;
 import ru.mpei.profcom.main.model.entities.LearnDto;
 import ru.mpei.profcom.main.model.entities.NewsDto;
@@ -56,15 +57,6 @@ public interface Api {
         @Query("id") int id
     );
 
-    @FormUrlEncoded
-    @POST("add_event.php")
-    Completable addEvent(
-        @Field("id") int id,
-        @Field("name") String name,
-        @Field("description") String description,
-        @Field("link") String link
-    );
-
     @GET("get_events.php")
     Single<List<EventDto>> getEvents(
         @Query("id") int id
@@ -90,4 +82,12 @@ public interface Api {
     Completable completeTask(
         @Field("id") int id
     );
+
+    Completable addEventToGoing(int userId, int id);
+
+    Single<List<GratitudeDto>> getGratitudes(int userId);
+
+    Single<List<String>> getAvailablePkTime();
+
+    Completable sendPkRequest(int userId, String time, String description, String vkLink);
 }

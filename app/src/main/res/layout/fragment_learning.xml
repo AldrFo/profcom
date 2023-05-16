@@ -14,7 +14,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:textSize="20sp"
-        android:text="Учебный материалы"/>
+        android:text="Учебные материалы"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/learningRecycler"

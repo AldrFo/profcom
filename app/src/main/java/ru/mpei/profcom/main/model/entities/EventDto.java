@@ -12,11 +12,31 @@ public class EventDto {
     public String description;
     @SerializedName("link")
     public String link;
+    public boolean canRegister;
+    public boolean alreadyGoing = false;
 
     public EventDto(int id, String name, String description, String link){
         this.id = id;
         this.name = name;
         this.description = description;
         this.link = link;
+        this.canRegister = false;
+    }
+
+    public EventDto(int id, String name, String description, String link, boolean canRegister){
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.link = link;
+        this.canRegister = canRegister;
+    }
+
+    public EventDto(int id, String name, String description, String link, boolean canRegister, boolean alreadyGoing){
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.link = link;
+        this.canRegister = canRegister;
+        this.alreadyGoing = alreadyGoing;
     }
 }

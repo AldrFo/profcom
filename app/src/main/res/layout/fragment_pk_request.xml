@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
+    app:cardCornerRadius="10dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center">
 
@@ -19,19 +20,27 @@
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="20dp"
-            android:text="Добавить активность"/>
+            android:text="Запись"/>
 
-        <EditText
-            android:id="@+id/edit_event_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/edit_background"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:hint="Введите название"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="Время записи"/>
+            <Spinner
+                android:id="@+id/timeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <EditText
-            android:id="@+id/edit_event_description"
+            android:id="@+id/hintText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -40,25 +49,25 @@
             android:lines="5"
             android:inputType="textMultiLine|textCapSentences"
             android:padding="5dp"
-            android:hint="Описание" />
+            android:hint="Примечание" />
 
         <EditText
-            android:id="@+id/edit_event_link"
+            android:id="@+id/linkText"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edit_background"
             android:layout_margin="10dp"
             android:padding="10dp"
-            android:hint="Добавьте ссылку"/>
+            android:hint="Ссылка на ВК"/>
 
         <Button
-            android:id="@+id/save_event_btn"
+            android:id="@+id/sendButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_gravity="bottom"
             android:padding="10dp"
-            android:text="Добавить"/>
+            android:text="Записаться"/>
 
     </LinearLayout>
 

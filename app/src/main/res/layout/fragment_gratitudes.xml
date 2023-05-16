@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bg_blue"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
@@ -14,13 +14,15 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:gravity="center"
-        android:textSize="20dp"
-        android:text="Активности"/>
+        android:textSize="20sp"
+        android:text="Благодарности"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/event_recycler"
+        android:id="@+id/gratitudesRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:background="@color/bg_blue"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_gratitude"/>
 
 </LinearLayout>

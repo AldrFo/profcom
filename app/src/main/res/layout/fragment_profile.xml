@@ -6,15 +6,25 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bg_blue"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="Профиль"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:padding="10dp"
+        android:elevation="3dp"
         android:background="@drawable/shape_white_rectangle"
         android:orientation="vertical">
 
@@ -82,11 +92,28 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/gratitudesButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Благодарности"/>
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/pk_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Записаться в профком"
+        android:drawableTop="@mipmap/ic_launcher"
+        android:layout_marginHorizontal="10dp"
+        android:textAllCaps="false"/>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:stretchColumns="0,1"
         android:shrinkColumns="0,1">
 
@@ -96,10 +123,10 @@
                 android:id="@+id/book_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aктивности"
+                android:text="Мероприятия"
                 android:layout_marginEnd="10dp"
                 android:padding="10dp"
-                android:drawableTop="@mipmap/ic_launcher"
+                android:drawableTop="@drawable/ic_events"
                 android:textAllCaps="false"
                 android:visibility="gone"
                 tools:visibility="visible"/>
@@ -108,7 +135,7 @@
                 android:id="@+id/metod_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableTop="@mipmap/ic_launcher"
+                android:drawableTop="@drawable/ic_learn"
                 android:text="Материалы"
                 android:padding="10dp"
                 android:textAllCaps="false"
@@ -124,9 +151,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Обращение"
-                android:drawableTop="@mipmap/ic_launcher"
+                android:drawableTop="@drawable/ic_message"
                 android:layout_marginEnd="10dp"
-
                 android:textAllCaps="false"
                 android:visibility="gone"
                 tools:visibility="visible"/>
@@ -136,7 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Доска заданий"
-                android:drawableTop="@mipmap/ic_launcher"
+                android:drawableTop="@drawable/ic_task"
                 android:textAllCaps="false"
                 android:visibility="gone"
                 tools:visibility="visible"/>
@@ -149,6 +175,7 @@
         android:id="@+id/exitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:text="Выйти" />
 
 </LinearLayout>

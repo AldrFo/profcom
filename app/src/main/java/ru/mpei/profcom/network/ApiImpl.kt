@@ -66,22 +66,13 @@ class ApiImpl: Api {
 
     override fun getUserData(id: Int): Single<UserData> = Single.just(users[id-1])
 
-    override fun addEvent(
-        id: Int,
-        name: String?,
-        description: String?,
-        link: String?
-    ): Completable = Completable.fromAction {
-        Thread.sleep(1000L)
-    }
-
     override fun getEvents(id: Int): Single<MutableList<EventDto>> = Single.just(mutableListOf(
-        EventDto(1, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "https://vk.com/profcom_mpei"),
-        EventDto(2, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "https://vk.com/profcom_mpei"),
-        EventDto(3, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "https://vk.com/profcom_mpei"),
+        EventDto(1, "С записью, но уже записался", "Очень классное и интересное мероприятие на которое можно записаться!", "https://vk.com/profcom_mpei",true, true),
+        EventDto(2, "Без записи", "Очень классное и интересное мероприятие на которое нельяза записаться, на него свободный вход ну или я не знаю, приватное оно", "https://vk.com/profcom_mpei"),
+        EventDto(3, "С записью", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "https://vk.com/profcom_mpei", true),
         EventDto(4, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "https://vk.com/profcom_mpei"),
         EventDto(5, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "https://vk.com/profcom_mpei"),
-        EventDto(6, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "https://vk.com/profcom_mpei")
+        EventDto(6, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "https://vk.com/profcom_mpei", true, true)
     ))
 
     override fun addActiveRequest(id: Int, description: String?): Completable = Completable.fromAction {
@@ -89,8 +80,8 @@ class ApiImpl: Api {
     }
 
     override fun getLearnings(): Single<MutableList<LearnDto>> = Single.just(mutableListOf(
-        LearnDto(1, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
-        LearnDto(2, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+        LearnDto(1, "long TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+        LearnDto(2, "idk TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing ololololololollololololololololololololololololololololololololololol elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
         LearnDto(3, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
         LearnDto(4, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
         LearnDto(5, "TEST", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
@@ -108,6 +99,29 @@ class ApiImpl: Api {
     ))
 
     override fun completeTask(id: Int): Completable = Completable.fromAction {
+        Thread.sleep(1000L)
+    }
+
+    override fun addEventToGoing(userId: Int, id: Int): Completable = Completable.fromAction {
+        Thread.sleep(100L)
+    }
+
+    override fun getGratitudes(userId: Int): Single<MutableList<GratitudeDto>> = Single.just(mutableListOf(
+        GratitudeDto(1, "За участие в социально-значимом мероприятии", "2022/2023, Осенний семестр", "02.08.2022", "Помощь в организации", "Университетский", "11.11.2022-12.11.2022", "3" , "https://bars.mpei.ru/bars_web/ST_PartN3/P2_RP_Ensuring_event_child/Download?itemID=6767"),
+        GratitudeDto(2, "За участие в другом социально-значимом мероприятии", "2022/2023, Осенний семестр", "02.08.2022", "Помощь в организации", "Университетский", "11.11.2022-12.11.2022", "3" , "https://bars.mpei.ru/bars_web/ST_PartN3/P2_RP_Ensuring_event_child/Download?itemID=6767"),
+        GratitudeDto(3, "За участие в еще одном социально-значимом мероприятии", "2022/2023, Осенний семестр", "02.08.2022", "Помощь в организации", "Университетский", "11.11.2022-12.11.2022", "3" , "https://bars.mpei.ru/bars_web/ST_PartN3/P2_RP_Ensuring_event_child/Download?itemID=6767")
+    ))
+
+    override fun getAvailablePkTime(): Single<MutableList<String>> = Single.just(mutableListOf(
+        "19.05.2023 13:00", "19.05.2023 13:15", "19.05.2023 13:30", "20.05.2023 13:00", "20.05.2023 13:15", "20.05.2023 13:30"
+    ))
+
+    override fun sendPkRequest(
+        userId: Int,
+        time: String?,
+        description: String?,
+        vkLink: String?
+    ): Completable = Completable.fromAction {
         Thread.sleep(1000L)
     }
 }

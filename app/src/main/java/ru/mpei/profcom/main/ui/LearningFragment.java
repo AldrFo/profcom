@@ -1,13 +1,12 @@
 package ru.mpei.profcom.main.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import io.reactivex.rxjava3.core.Observable;
+import ru.mpei.profcom.MainActivity;
 import ru.mpei.profcom.core.AdapterCallback;
 import ru.mpei.profcom.core.BaseFragment;
 import ru.mpei.profcom.core.RecyclerViewAdapter;
@@ -18,7 +17,7 @@ import ru.mpei.profcom.main.model.entities.LearnDto;
 
 public class LearningFragment extends BaseFragment<FragmentLearningBinding, LearningViewModel> {
 
-    private RecyclerViewAdapter<LearnDto, ItemLearningBinding> adapter = new RecyclerViewAdapter<LearnDto, ItemLearningBinding>() {
+    private final RecyclerViewAdapter<LearnDto, ItemLearningBinding> adapter = new RecyclerViewAdapter<LearnDto, ItemLearningBinding>() {
         @NonNull
         @Override
         public ViewHolder<LearnDto, ItemLearningBinding> onCreateViewHolder(
@@ -35,7 +34,11 @@ public class LearningFragment extends BaseFragment<FragmentLearningBinding, Lear
                         }
 
                         @Override
-                        public void onViewClicked(View view, LearnDto item) {}
+                        public void onViewClicked(View view, LearnDto item) {
+                            Bundle b = new Bundle();
+                            b.putSerializable("learn", item);
+                            navigate(MainActivity.LEARN_FRAGMENT, b);
+                        }
                     }
             );
         }
@@ -47,9 +50,7 @@ public class LearningFragment extends BaseFragment<FragmentLearningBinding, Lear
 
     @Override
     protected void prepareViewModel() {
-        viewModel.observeLearnData(this, list -> {
-            adapter.setItems(list);
-        });
+        viewModel.observeLearnData(this, adapter::setItems);
     }
 
     @Override

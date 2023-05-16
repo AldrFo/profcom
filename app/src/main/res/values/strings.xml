@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">profcom</string>
+    
+    <string name="semestr">Семестр: %s</string>
+    <string name="date_of_accept">Дата подтверждения: %s</string>
+    <string name="name">Наименование: %s</string>
+    <string name="level">Уровень мероприятия: %s</string>
+    <string name="form">Форма участия: %s</string>
+    <string name="dates">Сроки проведения: %s</string>
+    <string name="number_of_days">Количество дней участия: %s</string>
 </resources>

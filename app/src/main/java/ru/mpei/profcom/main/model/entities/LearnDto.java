@@ -2,7 +2,9 @@ package ru.mpei.profcom.main.model.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LearnDto {
+import java.io.Serializable;
+
+public class LearnDto implements Serializable {
 
     @SerializedName("id")
     public int id;
